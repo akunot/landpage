@@ -200,7 +200,7 @@ export function createHeroScene(canvas: HTMLCanvasElement, { reducedMotion, comp
   ro.observe(canvas)
   resize()
 
-  const clock = new THREE.Clock()
+  const timer = new THREE.Timer()
   let raf = 0
   let running = false
   let intro = reducedMotion ? 1 : 0
@@ -210,9 +210,10 @@ export function createHeroScene(canvas: HTMLCanvasElement, { reducedMotion, comp
     sphere.position.set(Math.cos(a) * ringR, Math.sin(a) * ringR, 0)
   }
 
-  const frame = () => {
-    const dt = Math.min(clock.getDelta(), 0.05)
-    const t = clock.elapsedTime
+  const frame = (timestamp: number) => {
+    timer.update(timestamp)
+    const dt = Math.min(timer.getDelta(), 0.05)
+    const t = timer.getElapsed()
     intro = Math.min(1, intro + dt * 0.55)
     const e = 1 - Math.pow(1 - intro, 4)
 
@@ -235,7 +236,8 @@ export function createHeroScene(canvas: HTMLCanvasElement, { reducedMotion, comp
   const start = () => {
     if (running || reducedMotion) return
     running = true
-    clock.getDelta()
+    // Skip the time spent paused (off-screen or hidden tab).
+    timer.reset()
     raf = requestAnimationFrame(frame)
   }
   const stop = () => {

@@ -34,17 +34,30 @@ La URL pública se define en **una sola variable**, `SITE_URL`, en `.env` (hoy `
 
 ### Cómo se despliega
 
-El sitio corre como un **Cloudflare Worker con assets estáticos** (`wrangler.jsonc`), conectado a este repositorio: **cada push a `main` se compila y se despliega solo**.
+Cada push a `main` despliega el sitio en **dos lugares**:
 
-- Producción: https://landpage.akunot.workers.dev
-- `wrangler.jsonc` sirve `dist/`; las rutas que no existen devuelven `public/404.html` con estado 404.
-- El nombre del Worker (`"name": "landpage"`) debe coincidir con el de Cloudflare; si se cambia aquí, se crea un Worker nuevo.
+| Destino | URL | Cómo |
+| --- | --- | --- |
+| Cloudflare Worker | https://landpage.akunot.workers.dev | Workers Builds conectado al repo; usa `wrangler.jsonc` y `SITE_URL` de `.env` |
+| GitHub Pages | https://akunot.github.io/landpage/ | `.github/workflows/pages.yml`; toma la URL de la configuración de Pages |
 
-Para probar localmente con el mismo comportamiento de producción:
+- `SITE_URL` puede incluir una ruta (como `/landpage` en GitHub Pages): esa ruta se usa como `base` de Vite, así que el mismo código funciona en la raíz o en una subruta.
+- La página 404 se genera desde `404.template.html` (con `%BASE_URL%` resuelto) y ambos destinos la devuelven con estado 404.
+- El nombre del Worker (`"name": "landpage"`) debe coincidir con el de Cloudflare.
+- GitHub Pages necesita activarse una vez: *Settings → Pages → Source: GitHub Actions*.
+
+Para probar localmente con el comportamiento de Cloudflare:
 
 ```bash
 npm run build
 npx wrangler dev
+```
+
+Para probar la variante de GitHub Pages:
+
+```bash
+SITE_URL=https://akunot.github.io/landpage npm run build
+SITE_URL=https://akunot.github.io/landpage npx vite preview   # → http://localhost:4173/landpage/
 ```
 
 ## Actualizar la imagen para redes

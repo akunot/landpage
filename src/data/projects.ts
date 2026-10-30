@@ -38,7 +38,7 @@ const sources: ProjectSource[] = [
     tags: ['Laravel', 'MySQL', 'Redis', 'Docker', 'Testing'],
     href: 'https://mallacurricular.manizales.unal.edu.co/',
     visual: 'mallas',
-    screenshot: '/projects/mallas.webp',
+    screenshot: `${import.meta.env.BASE_URL}projects/mallas.webp`,
     es: {
       title: 'Proyecto Mallas',
       org: 'Universidad Nacional de Colombia',
@@ -85,7 +85,7 @@ const sources: ProjectSource[] = [
     href: '#investigacion',
     visual: 'network',
     // Captured from the local build (not deployed yet): a generated tree with its classified articles.
-    screenshot: '/projects/tree-of-science.webp',
+    screenshot: `${import.meta.env.BASE_URL}projects/tree-of-science.webp`,
     screenshotPosition: 'center',
     es: {
       title: 'Tree of Science',
