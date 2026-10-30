@@ -1,0 +1,48 @@
+# akunot — portfolio
+
+Portafolio personal de Sergio Castro (akunot). React 19 + TypeScript + Vite + Tailwind CSS v4 + Motion; escena 3D del hero con Three.js (carga diferida, con fallback SVG sin WebGL).
+
+```bash
+npm install
+npm run dev      # desarrollo
+npm run build    # build de producción → dist/
+npm run lint
+```
+
+## Idiomas
+
+Español por defecto, con opción de inglés (selector ES/EN en la barra superior). La elección se recuerda en el navegador y se puede enlazar directamente la versión en inglés con `?lang=en`.
+
+## Editar contenido
+
+Todo el contenido está separado de los componentes y existe en `es` y `en`:
+
+| Archivo | Contenido |
+| --- | --- |
+| `src/i18n/ui.ts` | Textos de la interfaz: títulos de sección, botones, etiquetas, metadatos SEO |
+| `src/data/site.ts` | Identidad y enlaces de contacto (GitHub, LinkedIn, email) |
+| `src/data/projects.ts` | Proyectos (captura de Mallas en `public/projects/mallas.webp`) |
+| `src/data/content.ts` | Filosofía, investigación (**publicaciones con placeholders: `pending: true`**), tecnologías y sección "Ahora" (`nowUpdated`) |
+
+## Despliegue — Cloudflare Pages (akunot.dev)
+
+El proyecto ya incluye lo necesario: `.node-version` (Node 22), `public/_headers` (caché y cabeceras de seguridad), `robots.txt`, `sitemap.xml`, imagen Open Graph y URL canónica `https://akunot.dev/`.
+
+**Opción A — conectar el repositorio (recomendada, despliega en cada push):**
+
+1. Subir el repositorio a GitHub.
+2. Cloudflare → Workers & Pages → Create → Pages → *Connect to Git*.
+3. Configuración de build: comando `npm run build`, directorio de salida `dist`.
+4. En el proyecto de Pages → *Custom domains* → añadir `akunot.dev` (y opcionalmente `www.akunot.dev`).
+
+**Opción B — subida directa desde la terminal:**
+
+```bash
+npm run build
+npx wrangler login
+npx wrangler pages deploy dist --project-name akunot
+```
+
+## Actualizar la imagen para redes
+
+`public/og-image.png` (1200×630) se generó a partir de la identidad del sitio. Si cambias el titular, conviene regenerarla.
