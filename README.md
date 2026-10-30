@@ -24,16 +24,20 @@ Todo el contenido está separado de los componentes y existe en `es` y `en`:
 | `src/data/projects.ts` | Proyectos (captura de Mallas en `public/projects/mallas.webp`) |
 | `src/data/content.ts` | Filosofía, investigación (**publicaciones con placeholders: `pending: true`**), tecnologías y sección "Ahora" (`nowUpdated`) |
 
-## Despliegue — Cloudflare Pages (akunot.dev)
+## Despliegue — Cloudflare
 
-El proyecto ya incluye lo necesario: `.node-version` (Node 22), `public/_headers` (caché y cabeceras de seguridad), `robots.txt`, `sitemap.xml`, imagen Open Graph y URL canónica `https://akunot.dev/`.
+El proyecto ya incluye lo necesario: `.node-version` (Node 22), `public/_headers` (caché y cabeceras de seguridad) e imagen Open Graph.
+
+### URL del sitio
+
+La URL pública se define en **una sola variable**, `SITE_URL`, en `.env` (hoy `https://landpage.secastrob.workers.dev`). Con ella se generan al compilar la URL canónica, `og:url`/`og:image`, los `hreflang`, `robots.txt` y `sitemap.xml`. Cuando el dominio propio esté listo, basta con cambiar `SITE_URL` en `.env` (o definir la variable `SITE_URL` en la configuración de build de Cloudflare, que tiene prioridad) y volver a desplegar.
 
 **Opción A — conectar el repositorio (recomendada, despliega en cada push):**
 
 1. Subir el repositorio a GitHub.
 2. Cloudflare → Workers & Pages → Create → Pages → *Connect to Git*.
 3. Configuración de build: comando `npm run build`, directorio de salida `dist`.
-4. En el proyecto de Pages → *Custom domains* → añadir `akunot.dev` (y opcionalmente `www.akunot.dev`).
+4. En el proyecto → *Custom domains* → añadir el dominio y actualizar `SITE_URL`.
 
 **Opción B — subida directa desde la terminal:**
 
