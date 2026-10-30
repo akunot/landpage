@@ -1,0 +1,10 @@
+{
+  // Cloudflare Worker serving the static build. Deployed automatically on every push to main.
+  "name": "landpage",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./dist",
+    // Unknown paths get public/404.html with a real 404 status instead of the home page.
+    "not_found_handling": "404-page"
+  }
+}

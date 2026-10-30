@@ -32,19 +32,19 @@ El proyecto ya incluye lo necesario: `.node-version` (Node 22), `public/_headers
 
 La URL pública se define en **una sola variable**, `SITE_URL`, en `.env` (hoy `https://landpage.secastrob.workers.dev`). Con ella se generan al compilar la URL canónica, `og:url`/`og:image`, los `hreflang`, `robots.txt` y `sitemap.xml`. Cuando el dominio propio esté listo, basta con cambiar `SITE_URL` en `.env` (o definir la variable `SITE_URL` en la configuración de build de Cloudflare, que tiene prioridad) y volver a desplegar.
 
-**Opción A — conectar el repositorio (recomendada, despliega en cada push):**
+### Cómo se despliega
 
-1. Subir el repositorio a GitHub.
-2. Cloudflare → Workers & Pages → Create → Pages → *Connect to Git*.
-3. Configuración de build: comando `npm run build`, directorio de salida `dist`.
-4. En el proyecto → *Custom domains* → añadir el dominio y actualizar `SITE_URL`.
+El sitio corre como un **Cloudflare Worker con assets estáticos** (`wrangler.jsonc`), conectado a este repositorio: **cada push a `main` se compila y se despliega solo**.
 
-**Opción B — subida directa desde la terminal:**
+- Producción: https://landpage.secastrob.workers.dev
+- `wrangler.jsonc` sirve `dist/`; las rutas que no existen devuelven `public/404.html` con estado 404.
+- El nombre del Worker (`"name": "landpage"`) debe coincidir con el de Cloudflare; si se cambia aquí, se crea un Worker nuevo.
+
+Para probar localmente con el mismo comportamiento de producción:
 
 ```bash
 npm run build
-npx wrangler login
-npx wrangler pages deploy dist --project-name akunot
+npx wrangler dev
 ```
 
 ## Actualizar la imagen para redes

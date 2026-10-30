@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 — akunot</title>
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#090B0F" />
+    <meta name="color-scheme" content="dark" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&family=Space+Grotesk:wght@600;700&display=swap"
+    />
+    <style>
+      :root {
+        --ink: #090b0f;
+        --ink-3: #171c25;
+        --fg: #f0f2f6;
+        --muted: #929baa;
+        --dim: #5d6573;
+        --accent: #557bff;
+        --accent-2: #8ba5ff;
+        --line: rgba(255, 255, 255, 0.1);
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+      }
+      body {
+        min-height: 100svh;
+        display: flex;
+        flex-direction: column;
+        background: var(--ink);
+        color: var(--fg);
+        font-family: Inter, system-ui, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      .grid {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background-image:
+          linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+        background-size: 64px 64px;
+        mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 30%, transparent 75%);
+      }
+      header,
+      main,
+      footer {
+        position: relative;
+        width: 100%;
+        max-width: 90rem;
+        margin-inline: auto;
+        padding-inline: clamp(1.25rem, 4vw, 4rem);
+      }
+      header {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        height: 5rem;
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 600;
+        font-size: 1.125rem;
+      }
+      header a {
+        color: inherit;
+        text-decoration: none;
+      }
+      header span {
+        width: 1.5rem;
+        height: 1px;
+        background: var(--muted);
+      }
+      main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-block: 3rem;
+      }
+      .label {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.6875rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .label b {
+        color: var(--accent-2);
+        font-weight: 400;
+      }
+      .code {
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 700;
+        font-size: clamp(7rem, 26vw, 20rem);
+        line-height: 0.8;
+        letter-spacing: -0.06em;
+        color: var(--ink-3);
+        margin-top: 1.5rem;
+        user-select: none;
+      }
+      .code i {
+        font-style: normal;
+        color: var(--accent);
+      }
+      h1 {
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 600;
+        font-size: clamp(2rem, 5vw, 3.75rem);
+        line-height: 1;
+        letter-spacing: -0.035em;
+        margin-top: 2rem;
+      }
+      h1 span {
+        color: var(--muted);
+      }
+      p {
+        margin-top: 1rem;
+        max-width: 44ch;
+        line-height: 1.6;
+        color: var(--muted);
+      }
+      p[lang='en'] {
+        margin-top: 0.5rem;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.75rem;
+        color: var(--dim);
+      }
+      .cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        width: fit-content;
+        margin-top: 2.5rem;
+        padding: 0.75rem 1.25rem;
+        border-radius: 3px;
+        background: var(--fg);
+        color: var(--ink);
+        font-size: 0.875rem;
+        font-weight: 500;
+        text-decoration: none;
+        transition:
+          background 0.3s,
+          color 0.3s;
+      }
+      .cta:hover {
+        background: var(--accent);
+        color: var(--fg);
+      }
+      :focus-visible {
+        outline: 2px solid var(--accent-2);
+        outline-offset: 3px;
+      }
+      footer {
+        border-top: 1px solid var(--line);
+        padding-block: 1.75rem;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.75rem;
+        color: var(--accent-2);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="grid" aria-hidden="true"></div>
+    <header>
+      <a href="/">akunot</a>
+      <span aria-hidden="true"></span>
+    </header>
+    <main>
+      <p class="label"><b>[ 404 ]</b>&nbsp;&nbsp;Ruta no encontrada</p>
+      <div class="code" aria-hidden="true">404<i>.</i></div>
+      <h1>Esta ruta no existe. <span>Aún.</span></h1>
+      <p>Puede que el enlace esté mal escrito o que la página se haya movido.</p>
+      <p lang="en">This route doesn't exist — the link may be mistyped or the page has moved.</p>
+      <a class="cta" href="/">Volver al inicio <span aria-hidden="true">→</span></a>
+    </main>
+    <footer aria-hidden="true">&lt;build/&gt;&lt;doubt/&gt;&lt;improve/&gt; repeat;</footer>
+  </body>
+</html>
