@@ -30,13 +30,13 @@ El proyecto ya incluye lo necesario: `.node-version` (Node 22), `public/_headers
 
 ### URL del sitio
 
-La URL pública se define en **una sola variable**, `SITE_URL`, en `.env` (hoy `https://landpage.secastrob.workers.dev`). Con ella se generan al compilar la URL canónica, `og:url`/`og:image`, los `hreflang`, `robots.txt` y `sitemap.xml`. Cuando el dominio propio esté listo, basta con cambiar `SITE_URL` en `.env` (o definir la variable `SITE_URL` en la configuración de build de Cloudflare, que tiene prioridad) y volver a desplegar.
+La URL pública se define en **una sola variable**, `SITE_URL`, en `.env` (hoy `https://landpage.akunot.workers.dev`). Con ella se generan al compilar la URL canónica, `og:url`/`og:image`, los `hreflang`, `robots.txt` y `sitemap.xml`. Cuando el dominio propio esté listo, basta con cambiar `SITE_URL` en `.env` (o definir la variable `SITE_URL` en la configuración de build de Cloudflare, que tiene prioridad) y volver a desplegar.
 
 ### Cómo se despliega
 
 El sitio corre como un **Cloudflare Worker con assets estáticos** (`wrangler.jsonc`), conectado a este repositorio: **cada push a `main` se compila y se despliega solo**.
 
-- Producción: https://landpage.secastrob.workers.dev
+- Producción: https://landpage.akunot.workers.dev
 - `wrangler.jsonc` sirve `dist/`; las rutas que no existen devuelven `public/404.html` con estado 404.
 - El nombre del Worker (`"name": "landpage"`) debe coincidir con el de Cloudflare; si se cambia aquí, se crea un Worker nuevo.
 
